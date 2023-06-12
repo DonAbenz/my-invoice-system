@@ -1,11 +1,11 @@
 <div>
     <div class="mx-auto max-w-2xl px-4 py-14 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Edit Invoice <span
-                class="text-lg ml-2">{{ $invoice->code }}</span></h1>
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $action == 'edit' ? 'Edit Invoice' : 'Create Invoice'}} <span
+                class="text-lg ml-2">{{ $invoice->code ?? '' }}</span></h1>
         <p class="mt-2">Please fill in the information below. The field labels marked with <span
                 class="text-rose-500">*</span> are required input fields.
         </p>
-        <form wire:submit.prevent="update" class="md:col-span-2 mt-4 justify-center">
+        <form wire:submit.prevent="{{ $action == 'edit' ? 'update': 'store'}}" class="md:col-span-2 mt-4 justify-center">
             <div class="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-12">
                 {{-- <div class="col-span-full flex items-center gap-x-8">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -172,7 +172,7 @@
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
                         Password <span class="text-rose-500">*</span>
                     </label>
-                    {{-- <sub>Provide user code if you want send code to your memebers</sub> --}}
+                    <sub>For security, please confirm your password to continue.</sub>
                     <div class="relative mt-2 rounded-md shadow-sm">
                         <input type="password" wire:model.debounce.300ms="password" name="password" id="password"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#4F4537] sm:text-sm sm:leading-6"
@@ -188,7 +188,7 @@
             <div class="mt-8 flex">
                 <button type="submit"
                     class="flex w-full justify-center rounded-md bg-[#1B3B31] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#EABD5E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B3B31]">
-                    Save
+                    {{ $action == 'edit' ? 'Save' : 'Create'}}
                 </button>
             </div>
         </form>

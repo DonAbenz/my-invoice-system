@@ -8,8 +8,8 @@
                             class="font-semibold text-gray-900">Startup</strong> plan. The next payment of $80 will be due on
                         August 4, 2022.</p> --}}
                 </div>
-                {{-- <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <a type="button" href="{{ route('orders.create') }}"
+                <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                    <button wire:click="$emit('openModal', 'invoice.post-modal', {{ json_encode(['action' => 'add']) }})"
                         class="block rounded-md bg-[#4F4537] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#4F4537] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4F4537]">
                         <div class="flex items-center gap-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -19,10 +19,10 @@
                             </svg>
 
 
-                            <span>Order Sale</span>
+                            <span>Create Invoice</span>
                         </div>
-                    </a>
-                </div> --}}
+                    </button>
+                </div>
             </div>
             <div class="mt-4 sm:flex gap-2 sm:items-end">
                 <div class="flex-initial sm:w-[20rem]">
@@ -94,7 +94,7 @@
                                     <td
                                         class="relative py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 {{ $key > 0 ? 'border-t border-transparent' : '' }}">
                                         <button type="button"
-                                            wire:click="$emit('openModal', 'invoice.edit', {{ json_encode(['invoice' => $item->code]) }})"
+                                            wire:click="$emit('openModal', 'invoice.post-modal', {{ json_encode(['invoice' => $item->code, 'action' => 'edit']) }})"
                                             class="inline-flex items-center text-sm font-semibold text-gray-900 disabled:cursor-not-allowed disabled:opacity-30">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
