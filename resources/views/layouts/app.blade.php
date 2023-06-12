@@ -103,6 +103,7 @@
             </div>
         </div>
         @stack('modals')
+        @livewire('livewire-ui-modal')
         @livewireScripts
         <script src="{{ asset('js/component.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"

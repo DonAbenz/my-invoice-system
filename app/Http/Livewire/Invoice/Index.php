@@ -13,6 +13,11 @@ class Index extends Component
 
     public $searchTerm;
 
+    public function getListeners()
+    {
+        return ['pageRender' => '$refresh'];
+    }
+
     public function render()
     {
         $results = Invoice::query()
@@ -23,6 +28,6 @@ class Index extends Component
             ->latest()
             ->paginate(5);
 
-        return view('livewire.order.index', compact('results'));
+        return view('livewire.invoice.index', compact('results'));
     }
 }

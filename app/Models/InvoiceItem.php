@@ -13,6 +13,8 @@ class InvoiceItem extends Model
         'invoice_code',
         'product_id',
         'quantity',
+        'price',
+        'total',
     ];
 
     public function order()
