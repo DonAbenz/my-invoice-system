@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->string('customer_name')->unique();
+            $table->string('customer_name');
             $table->timestamps();
         });
     }
