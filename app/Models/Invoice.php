@@ -6,7 +6,7 @@ use App\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Invoice extends Model
 {
     use HasFactory;
     use Filterable;
@@ -19,9 +19,9 @@ class Order extends Model
     public $incrementing = false;
     protected $primaryKey = 'code';
 
-    public function orderDetails()
+    public function invoiceItems()
     {
-        return $this->hasMany(OrderDetail::class, 'order_code');
+        return $this->hasMany(InvoiceItem::class, 'invoice_code');
     }
 
     

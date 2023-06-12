@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Livewire\Order;
+namespace App\Http\Livewire\Invoice;
 
-use App\Filters\OrderFilter;
-use App\Models\Order;
+use App\Filters\InvoiceFilter;
+use App\Models\Invoice;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,9 +15,9 @@ class Index extends Component
 
     public function render()
     {
-        $results = Order::query()
-            ->with('orderDetails')
-            ->filter(new OrderFilter([
+        $results = Invoice::query()
+            ->with('invoiceItems')
+            ->filter(new InvoiceFilter([
                 'search' => $this->searchTerm,
             ]))
             ->latest()

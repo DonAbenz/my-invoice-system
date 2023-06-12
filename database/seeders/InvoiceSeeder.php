@@ -2,15 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\Order;
-use App\Models\OrderDetail;
+use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use App\Models\Product;
 use App\Traits\CodeGenerator;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class OrderSeeder extends Seeder
+class InvoiceSeeder extends Seeder
 {
     use CodeGenerator;
     /**
@@ -21,8 +21,8 @@ class OrderSeeder extends Seeder
         $faker = Factory::create();
 
         for ($i = 0; $i < 10; $i++) {
-            $createdOrder = Order::create([
-                'code' => $this->generateCode('orders'),
+            $createdInvoice = Invoice::create([
+                'code' => $this->generateCode('invoices'),
                 'customer_name' => $faker->name()
             ]);
 
@@ -31,8 +31,8 @@ class OrderSeeder extends Seeder
                 $product = Product::find(rand(1, 5));
                 $quantity = rand(1, 5);
 
-                OrderDetail::create([
-                    'order_code' => $createdOrder->code,
+                InvoiceItem::create([
+                    'invoice_code' => $createdInvoice->code,
                     'product_id' => $product->id,
                     'quantity' => $quantity,
                     'price' => $product->price,

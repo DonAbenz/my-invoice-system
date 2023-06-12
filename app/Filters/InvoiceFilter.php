@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class OrderFilter extends QueryFilters
+class InvoiceFilter extends QueryFilters
 {
     public function search(string $terms)
     {
@@ -20,11 +20,6 @@ class OrderFilter extends QueryFilters
                 // });
             });
         });
-    }
-
-    public function paymentStatus(string $data)
-    {
-        $this->builder->where('payment_status', $data);
     }
     
 }

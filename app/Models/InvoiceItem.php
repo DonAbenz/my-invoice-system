@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderDetail extends Model
+class InvoiceItem extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'order_code',
+        'invoice_code',
         'product_id',
         'quantity',
     ];
 
     public function order()
     {
-        return $this->belongsTo(Order::class, 'order_code');
+        return $this->belongsTo(Invoice::class, 'invoice_code');
     }
 
     public function product()

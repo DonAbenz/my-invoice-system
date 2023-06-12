@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Order\Index as IndexOrder;
+use App\Http\Livewire\Invoice\Index as IndexInvoice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +30,6 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/orders', IndexOrder::class)->name('orders');
+    Route::get('/invoices', IndexInvoice::class)->name('invoices');
     // Route::get('/orders/create-sale', CreateOrder::class)->name('orders.create');
 });

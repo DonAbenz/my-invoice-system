@@ -9,17 +9,17 @@
                 <ul role="list" class="-mx-2 space-y-1">
 
                     <li>
-                        <a href="{{ route('orders') }}"
+                        <a href="{{ route('invoices') }}"
                             :class="{
-                                'bg-[#DFE0DF] text-[#231f20]': routeName == 'orders',
+                                'bg-[#DFE0DF] text-[#231f20]': routeName == 'invoices',
                                 'text-gray-700 hover:text-[#231f20] hover:bg-[#DFE0DF]': routeName !=
-                                    'orders',
+                                    'invoices',
                             }"
                             class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                             x-state-description="undefined: &quot;bg-[#DFE0DF] text-[#231f20]&quot;, undefined: &quot;text-gray-700 hover:text-[#231f20] hover:bg-[#DFE0DF]&quot;">
                             <svg :class="{
-                                'text-[#231f20]': routeName == 'orders',
-                                'text-gray-400 group-hover:text-[#231f20]': routeName != 'orders',
+                                'text-[#231f20]': routeName == 'invoices',
+                                'text-gray-400 group-hover:text-[#231f20]': routeName != 'invoices',
                             }"
                                 class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" aria-hidden="true">
@@ -27,7 +27,7 @@
                                     d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                             </svg>
 
-                            Orders
+                            Invoices
                         </a>
                     </li>
                 </ul>

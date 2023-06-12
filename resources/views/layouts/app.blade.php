@@ -105,6 +105,41 @@
         @stack('modals')
         @livewireScripts
         <script src="{{ asset('js/component.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            window.addEventListener('swal', function(e) {
+                Swal.fire({
+                    icon: e.detail.icon,
+                    title: e.detail.title,
+                    text: e.detail.text,
+                    html: e.detail.html,
+                    width: e.detail.hasOwnProperty('width') ? e.detail.width : 400,
+                    confirmButtonColor: '#1B3B31',
+                    timer: e.detail.hasOwnProperty('timer') ? e.detail.width : 3000,
+                    timerProgressBar: true,
+                });
+            });
+            window.addEventListener('swal:confirm', function(e) {
+                Swal.fire({
+                    icon: e.detail.icon,
+                    title: e.detail.title,
+                    text: e.detail.text,
+                    html: e.detail.html,
+                    width: e.detail.hasOwnProperty('width') ? e.detail.width : 400,
+                    confirmButtonColor: '#1B3B31',
+                    showCancelButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit(e.detail.actionMethod);
+                    }
+                });
+            });
+        </script>
+    
+        @stack('scripts')
     </body>
 
 </html>

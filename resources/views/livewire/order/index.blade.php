@@ -3,7 +3,7 @@
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-lg font-semibold leading-6 text-gray-900">Orders</h1>
+                    <h1 class="text-lg font-semibold leading-6 text-gray-900">Invoices</h1>
                     {{-- <p class="mt-2 text-sm text-gray-700">Your team is on the <strong
                             class="font-semibold text-gray-900">Startup</strong> plan. The next payment of $80 will be due on
                         August 4, 2022.</p> --}}
@@ -89,7 +89,7 @@
                                     </td>
                                     <td
                                         class="relative py-3 pl-4 pr-3 text-sm {{ $key > 0 ? 'border-t border-gray-200' : '' }}">
-                                        {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($item->orderDetails->sum('total'), 'USD') }}
+                                        {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($item->invoiceItems->sum('total'), 'USD') }}
                                     </td>
                                     <td
                                         class="relative py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 {{ $key > 0 ? 'border-t border-transparent' : '' }}">
