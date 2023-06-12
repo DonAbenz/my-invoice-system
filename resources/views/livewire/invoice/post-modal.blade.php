@@ -60,7 +60,7 @@
                                             d="M6 6h.008v.008H6V6z" />
                                     </svg>
 
-                                    <span class="ml-3 block truncate text-gray-500">Please add products to list</span>
+                                    <span class="ml-3 block truncate text-gray-500">Please add product to list</span>
                                 </span>
                                 <span
                                     class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
