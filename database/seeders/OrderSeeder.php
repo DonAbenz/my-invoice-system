@@ -27,10 +27,16 @@ class OrderSeeder extends Seeder
             ]);
 
             for ($j = 0; $j < rand(2, 5); $j++) {
+
+                $product = Product::find(rand(1, 5));
+                $quantity = rand(1, 5);
+
                 OrderDetail::create([
                     'order_code' => $createdOrder->code,
-                    'product_id' => Product::find(rand(1, 5))->id,
-                    'quantity' => rand(1, 5),
+                    'product_id' => $product->id,
+                    'quantity' => $quantity,
+                    'price' => $product->price,
+                    'total' => $product->price * $quantity,
                 ]);
             }
         }

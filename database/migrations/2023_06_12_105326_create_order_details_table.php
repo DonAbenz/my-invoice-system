@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('order_code');
             $table->integer('product_id');
             $table->integer('quantity');
+            $table->float('price', 10, 2);
+            $table->float('total', 10, 2);
             $table->timestamps();
         });
     }
