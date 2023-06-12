@@ -138,8 +138,39 @@
                     }
                 });
             });
+
+            window.addEventListener('swal:confirm.password', e => {
+                Swal.fire({
+                    icon: e.detail.icon,
+                    title: e.detail.title,
+                    text: e.detail.text,
+                    showCancelButton: true,
+                    confirmButtonText: e.detail.confirmButtonText,
+                    cancelButtonText: e.detail.denyButtonText,
+                    confirmButtonColor: e.detail.confirmButtonColor,
+                    cancelButtonColor: e.detail.cancelButtonColor,
+                    input: 'password',
+                    inputPlaceholder: 'Enter your password here',
+                    inputAttributes: {
+                        maxlength: 20,
+                        autocapitalize: 'off',
+                        autocorrect: 'off'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.dispatchEvent(
+                            new CustomEvent('loading', {
+                                detail: {
+                                    loading: true
+                                }
+                            })
+                        );
+                        Livewire.emit(e.detail.actionMethod, [result.value]);
+                    }
+                });
+            })
         </script>
-    
+
         @stack('scripts')
     </body>
 
