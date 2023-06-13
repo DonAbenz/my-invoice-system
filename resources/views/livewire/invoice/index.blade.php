@@ -86,7 +86,9 @@
                                         <div class="font-medium text-gray-500">
                                             {{ $item->customer_name }}
                                         </div>
-                                        <p>{{ $item->score }}</p>
+                                        @if ($item->score)
+                                            <p>search score: {{ $item->score }}</p>
+                                        @endif
                                     </td>
                                     <td
                                         class="relative py-3 pl-4 pr-3 text-sm {{ $key > 0 ? 'border-t border-gray-200' : '' }}">
@@ -108,8 +110,7 @@
                                             <span class="sr-only">Edit</span>
                                         </button>
 
-                                        <button type="button"
-                                            wire:click="confirmDelete('{{ $item->code }}')"
+                                        <button type="button" wire:click="confirmDelete('{{ $item->code }}')"
                                             class="ml-3 inline-flex items-center text-sm font-semibold text-gray-900 disabled:cursor-not-allowed disabled:opacity-30">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
