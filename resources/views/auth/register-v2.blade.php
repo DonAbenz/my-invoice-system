@@ -63,14 +63,14 @@
                     </div>
                     <div>
                         <label for="name" class="sr-only">Name</label>
-                        <input id="name" name="name" type="text" autocomplete="name" :value="old('name')"
+                        <input id="name" name="name" type="text" autocomplete="name" value="{{ old('name') }}"
                             class="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-[#4F4537] sm:text-sm sm:leading-6"
                             placeholder="Name">
                     </div>
                     <div>
                         <label for="email-address" class="sr-only">Email address</label>
                         <input id="email-address" name="email" type="email" autocomplete="email"
-                            :value="old('email')"
+                            value="{{ old('email') }}"
                             class="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-[#4F4537] sm:text-sm sm:leading-6"
                             placeholder="Email address">
                     </div>
