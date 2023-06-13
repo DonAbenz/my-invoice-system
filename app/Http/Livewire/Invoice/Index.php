@@ -31,7 +31,6 @@ class Index extends Component
             ->filter(new InvoiceFilter([
                 'search' => $this->searchTerm,
             ]))
-            ->latest()
             ->paginate(10);
 
         return view('livewire.invoice.index', compact('results'));

@@ -27,7 +27,9 @@ abstract class QueryFilters
             }
 
             if (strlen($value)) {
-                call_user_func_array([$this, $method], (array) $value);
+                $this->$method($value);
+            } else {
+                $this->$method();
             }
         }
 
