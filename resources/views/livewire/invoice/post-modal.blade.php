@@ -116,6 +116,12 @@
                                                         {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($item['price'], 'USD') }}
                                                     </p>
                                                 </div>
+                                                <div class="mt-1 flex text-sm">
+                                                    <p class="text-gray-600">Subtotal</p>
+                                                    <p class="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+                                                        {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($item['price'] * $item['quantity']  , 'USD') }}
+                                                    </p>
+                                                </div>
                                                 {{-- <p class="mt-1 text-sm font-medium text-gray-900">PHP
                                                 {{ $item['price'] }}</p> --}}
                                             </div>

@@ -23,7 +23,6 @@ class ProductSeeder extends Seeder
         foreach ($products as $name) {
             Product::create([
                 'name' => $name,
-                'cost' => rand(40, 50),
                 'price' => rand(60, 100),
             ]);
         }

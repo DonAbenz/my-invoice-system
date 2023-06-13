@@ -39,7 +39,7 @@
                         </div>
                         <input wire:model="searchTerm" type="search" name="search" id="search"
                             class="focus:ring-[#4F4537] focus:border-[#4F4537] block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
-                            placeholder="Code | Name">
+                            placeholder="Invoice Number | Customer Name">
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                                 Date Created</th>
                             <th scope="col"
                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                Code</th>
+                                Invoice Number</th>
                             <th scope="col"
                                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                 Customer Name</th>
@@ -86,6 +86,7 @@
                                         <div class="font-medium text-gray-500">
                                             {{ $item->customer_name }}
                                         </div>
+                                        <p>{{ $item->score }}</p>
                                     </td>
                                     <td
                                         class="relative py-3 pl-4 pr-3 text-sm {{ $key > 0 ? 'border-t border-gray-200' : '' }}">

@@ -6,20 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 class InvoiceFilter extends QueryFilters
 {
-    public function search(string $terms)
+    public function search(string $data)
     {
         $query = $this->builder;
 
-        collect(str_getcsv($terms, ' ', '"'))->filter()->each(function ($term) use ($query) {
-            $term = $term . '%';
-
-            $query->where(function ($query) use ($term) {
-                $query->where('code', 'like', $term)
-                    ->orWhere('customer_name', 'like', $term);
-                // ->orWhereHas(function ($query) use ($term) {
-                // });
-            });
-        });
+        $query->selectRaw('*, match(code, customer_name) against(? in boolean mode) as score', [$data])
+            ->whereRaw('match(code, customer_name) against(? in boolean mode)', [$data]);
     }
-    
 }

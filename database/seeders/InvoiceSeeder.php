@@ -20,10 +20,10 @@ class InvoiceSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $createdInvoice = Invoice::create([
                 'code' => $this->generateCode('invoices'),
-                'customer_name' => $faker->name()
+                'customer_name' => $faker->name() . ' ' . $faker->name()
             ]);
 
             for ($j = 0; $j < rand(2, 5); $j++) {

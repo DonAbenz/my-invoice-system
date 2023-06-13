@@ -73,7 +73,7 @@ class PostModal extends ModalComponent
 
     public static function modalMaxWidth(): string
     {
-        return '2xl';
+        return '3xl';
     }
 
     public function updated($propertyName, $value)

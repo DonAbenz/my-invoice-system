@@ -32,7 +32,7 @@ class Index extends Component
                 'search' => $this->searchTerm,
             ]))
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
 
         return view('livewire.invoice.index', compact('results'));
     }
