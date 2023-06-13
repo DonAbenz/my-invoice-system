@@ -22,7 +22,7 @@ class UpdateInvoice
 
         InvoiceItem::where('invoice_code', $invoiceCode)->delete();
 
-        $cartService = new CartService(instance: 'invoice-cart');
+        $cartService = new CartService();
 
         $cartService->content()->each(function ($item, $key) use ($invoiceCode, $cartService) {
             InvoiceItem::create([

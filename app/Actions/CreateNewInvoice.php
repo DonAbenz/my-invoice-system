@@ -20,7 +20,7 @@ class CreateNewInvoice
             'customer_name' => $name,
         ]);
 
-        $cartService = new CartService(instance: 'invoice-cart');
+        $cartService = new CartService();
 
         $cartService->content()->each(function ($item, $key) use ($createdInvoice, $cartService) {
             InvoiceItem::create([

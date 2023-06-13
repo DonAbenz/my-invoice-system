@@ -1,11 +1,12 @@
 <div>
     <div class="mx-auto max-w-2xl px-4 py-14 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{ $action == 'edit' ? 'Edit Invoice' : 'Create Invoice'}} <span
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {{ $action == 'edit' ? 'Edit Invoice' : 'Create Invoice' }} <span
                 class="text-lg ml-2">{{ $invoice->code ?? '' }}</span></h1>
         <p class="mt-2">Please fill in the information below. The field labels marked with <span
                 class="text-rose-500">*</span> are required input fields.
         </p>
-        <form wire:submit.prevent="{{ $action == 'edit' ? 'update': 'store'}}" class="md:col-span-2 mt-4 justify-center">
+        <form wire:submit.prevent="{{ $action == 'edit' ? 'update' : 'store' }}" class="md:col-span-2 mt-4 justify-center">
             <div class="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-12">
                 {{-- <div class="col-span-full flex items-center gap-x-8">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -56,8 +57,7 @@
                                         stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M6 6h.008v.008H6V6z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
                                     </svg>
 
                                     <span class="ml-3 block truncate text-gray-500">Please add product to list</span>
@@ -80,7 +80,7 @@
                                 aria-activedescendant="listbox-option-3">
 
                                 @foreach ($products as $product)
-                                    <livewire:invoice.product-component :product='$product' :instance='"invoice-cart"'
+                                    <livewire:invoice.product-component :product='$product'
                                         wire:key="{{ time() }}" />
                                 @endforeach
 
@@ -119,7 +119,7 @@
                                                 <div class="mt-1 flex text-sm">
                                                     <p class="text-gray-600">Subtotal</p>
                                                     <p class="ml-4 border-l border-gray-200 pl-4 text-gray-500">
-                                                        {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($item['price'] * $item['quantity']  , 'USD') }}
+                                                        {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($item['price'] * $item['quantity'], 'USD') }}
                                                     </p>
                                                 </div>
                                                 {{-- <p class="mt-1 text-sm font-medium text-gray-900">PHP
@@ -192,9 +192,9 @@
             </div>
 
             <div class="mt-8 flex">
-                <button type="submit"
-                    class="flex w-full justify-center rounded-md bg-[#1B3B31] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#EABD5E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B3B31]">
-                    {{ $action == 'edit' ? 'Save' : 'Create'}}
+                <button type="submit" wire:loading.attr="disabled"
+                    class="disabled:cursor-not-allowed flex w-full justify-center rounded-md bg-[#1B3B31] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#EABD5E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B3B31]">
+                    {{ $action == 'edit' ? 'Save' : 'Create' }}
                 </button>
             </div>
         </form>

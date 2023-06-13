@@ -31,9 +31,9 @@ class ProductComponent extends Component
      *
      * @return void
      */
-    public function addToCart(): void
+    public function addToCart(CartService $cartService): void
     {
-        (new CartService(instance: $this->instance))->add($this->product->id, $this->product->name, $this->product->price, $this->quantity);
+        $cartService->add($this->product->id, $this->product->name, $this->product->price, $this->quantity);
         $this->emit('productAddedToCart', $this->product->id);
     }
 }

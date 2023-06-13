@@ -29,9 +29,9 @@ class PostModal extends ModalComponent
 
     private $cartService;
 
-    public function boot()
+    public function boot(CartService $cartService)
     {
-        $this->cartService = new CartService(instance: 'invoice-cart');
+        $this->cartService = $cartService;
     }
 
     public function mount(): void
