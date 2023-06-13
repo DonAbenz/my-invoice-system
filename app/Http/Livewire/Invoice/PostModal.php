@@ -106,7 +106,7 @@ class PostModal extends ModalComponent
     public function updateCart()
     {
         $this->content = $this->cartService->content();
-        
+
         $this->content->each(function ($item, $key) {
             $this->cartQtys[$key] = $this->content[$key]['quantity'];
         });
@@ -122,7 +122,7 @@ class PostModal extends ModalComponent
                 $this->dispatchBrowserEvent('swal', [
                     'icon' => 'error',
                     'title' => 'Opps!',
-                    'text' => 'Cart is empty. Please select atleast one product.',
+                    'text' => 'Cart is currently empty. Please select atleast one product.',
                 ]);
                 return 0;
             }
@@ -150,7 +150,12 @@ class PostModal extends ModalComponent
         try {
 
             if (sizeof($this->content) == 0) {
-                throw ValidationException::withMessages(['items' => 'Please add at least one product.']);
+                $this->dispatchBrowserEvent('swal', [
+                    'icon' => 'error',
+                    'title' => 'Opps!',
+                    'text' => 'Cart is currently empty. Please select atleast one product.',
+                ]);
+                return 0;
             }
 
             $this->validate();
