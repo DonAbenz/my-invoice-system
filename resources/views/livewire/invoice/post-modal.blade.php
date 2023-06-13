@@ -6,7 +6,8 @@
         <p class="mt-2">Please fill in the information below. The field labels marked with <span
                 class="text-rose-500">*</span> are required input fields.
         </p>
-        <form wire:submit.prevent="{{ $action == 'edit' ? 'update' : 'store' }}" class="md:col-span-2 mt-4 justify-center">
+        <form wire:submit.prevent="{{ $action == 'edit' ? 'update' : 'store' }}"
+            class="md:col-span-2 mt-4 justify-center">
             <div class="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-12">
                 {{-- <div class="col-span-full flex items-center gap-x-8">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -40,11 +41,19 @@
 
                     <div x-data="Components.menu({ open: false })" x-init="init()"
                         @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)">
-                        <label id="listbox-label" class="block text-sm font-medium leading-6 text-gray-900">
-                            Product Items <span class="text-rose-500">*</span>
-                            @error('items')
-                                <span class="pl-5 font-normal text-sm text-[#C1554D]">{{ $message }}</span>
-                            @enderror
+                        <label id="listbox-label"
+                            class="flex justify-between text-sm font-medium leading-6 text-gray-900">
+                            <div>
+                                Product Items <span class="text-rose-500">*</span>
+                            </div>
+
+                            <div class="flex">
+                                <p>Total: </p>
+                                <span class="pl-5 font-semibold text-md text-gray-900">
+                                    {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($total, 'USD') }}
+                                </span>
+                            </div>
+
                         </label>
                         <div class="relative mt-2">
                             <button type="button" @click="open = true"
@@ -164,10 +173,11 @@
                         </ul>
                     @else
                         <div class="flex flex-col items-center">
-                            <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_e3pteeho.json"
+                            {{-- <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_e3pteeho.json"
                                 background="transparent" speed="1" style="width: 200px; height: 200px;" loop
                                 autoplay>
-                            </lottie-player>
+                            </lottie-player> --}}
+                            Empty Cart!
                             <span class="text-xl font-semibold"></span>
                         </div>
                     @endif

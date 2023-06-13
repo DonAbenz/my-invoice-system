@@ -22,6 +22,7 @@ class PostModal extends ModalComponent
     public $action;
 
     public $cartQtys;
+    public $total;
     public $content;
     protected $listeners = [
         'productAddedToCart' => 'updateCart',
@@ -83,6 +84,15 @@ class PostModal extends ModalComponent
         $this->validateOnly($propertyName);
     }
 
+    public function updatedCartQtys($qty, $id)
+    {
+        $qty = (!$qty || $qty < 1) ? 1 : $qty;
+
+        $this->cartQtys[$id] = $qty;
+        $this->cartService->setQuantity($id, $qty);
+        $this->updateCart();
+    }
+
     public function removeFromCart(string $id): void
     {
         $this->cartService->remove($id);
@@ -95,24 +105,15 @@ class PostModal extends ModalComponent
         $this->updateCart();
     }
 
-    public function updatedCartQtys($qty, $id)
-    {
-        $qty = (!$qty || $qty < 1) ? 1 : $qty;
-
-        $this->cartQtys[$id] = $qty;
-        $this->cartService->setQuantity($id, $qty);
-        $this->updateCart();
-    }
-
     public function updateCart()
     {
-        $this->resetValidation('items');
-
         $this->content = $this->cartService->content();
-
+        
         $this->content->each(function ($item, $key) {
             $this->cartQtys[$key] = $this->content[$key]['quantity'];
         });
+
+        $this->total = $this->cartService->total();
     }
 
     public function store(CreateNewInvoice $createNewInvoice)
