@@ -42,14 +42,14 @@
                     <div x-data="Components.menu({ open: false })" x-init="init()"
                         @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)">
                         <label id="listbox-label"
-                            class="flex justify-between text-sm font-medium leading-6 text-gray-900">
+                            class="flex items-end justify-between text-sm font-medium leading-6 text-gray-900">
                             <div>
                                 Product Items <span class="text-rose-500">*</span>
                             </div>
 
-                            <div class="flex">
-                                <p>Total: </p>
-                                <span class="pl-5 font-semibold text-md text-gray-900">
+                            <div class="flex items-end">
+                                <p class="text-lg">Total: </p>
+                                <span class="pl-5 font-semibold text-lg text-gray-900">
                                     {{ (new NumberFormatter('en_US', NumberFormatter::CURRENCY))->formatCurrency($total, 'USD') }}
                                 </span>
                             </div>
@@ -109,7 +109,8 @@
                                 </div> --}}
 
                                     <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                                        <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                                        <div
+                                            class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0 items-center">
                                             <div>
                                                 <div class="flex justify-between">
                                                     <h3 class="text-sm">
@@ -136,12 +137,33 @@
                                             </div>
 
                                             <div class="mt-4 sm:mt-0 sm:pr-9">
-                                                <label for="quantity-0" class="sr-only">{{ $item['name'] }}</label>
+                                                {{-- <label for="quantity-0" class="sr-only">qty</label>
 
                                                 <input type="number" step="1" min="1"
                                                     wire:model="cartQtys.{{ $item['id'] }}"
                                                     class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-[#4F4537] focus:outline-none focus:ring-1 focus:ring-[#4F4537] sm:text-sm"
-                                                    name="" id="" placeholder="0">
+                                                    name="" id="" placeholder="0"> --}}
+
+                                                <div class="pr-20">
+                                                    <label for="quantity-0"
+                                                        class="block text-sm font-medium leading-6 text-gray-900">Qty</label>
+                                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                                        <div
+                                                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="text-gray-400 w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                                            </svg>
+
+                                                        </div>
+                                                        <input type="number" tep="1" min="1"
+                                                            wire:model="cartQtys.{{ $item['id'] }}"
+                                                            class="block w-full rounded-md border-0 py-1.5 pl-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                            placeholder="0">
+                                                    </div>
+                                                </div>
 
                                                 <div class="absolute right-0 top-0">
                                                     <button type="button"

@@ -36,6 +36,11 @@ class Index extends Component
         return view('livewire.invoice.index', compact('results'));
     }
 
+    public function updatingSearchTerm()
+    {
+        $this->resetPage();
+    }
+
     public function confirmDelete($code)
     {
         $this->selectedInvoiceCode = $code;
