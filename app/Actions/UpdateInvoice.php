@@ -14,6 +14,7 @@ class UpdateInvoice
     public function execute(
         $invoiceCode,
         $name,
+        $invoiceItems,
     ): void {
 
         Invoice::where('code', $invoiceCode)->update([
@@ -22,15 +23,13 @@ class UpdateInvoice
 
         InvoiceItem::where('invoice_code', $invoiceCode)->delete();
 
-        $cartService = new CartService();
-
-        $cartService->content()->each(function ($item, $key) use ($invoiceCode, $cartService) {
+        $invoiceItems->each(function ($item, $key) use ($invoiceCode, $invoiceItems) {
             InvoiceItem::create([
                 'invoice_code' => $invoiceCode,
-                'product_id' => $cartService->content()[$key]['id'],
-                'quantity' => $cartService->content()[$key]['quantity'],
-                'price' => $cartService->content()[$key]['price'],
-                'total' => $cartService->content()[$key]['price'] * $cartService->content()[$key]['quantity'],
+                'product_id' => $invoiceItems[$key]['id'],
+                'quantity' => $invoiceItems[$key]['quantity'],
+                'price' => $invoiceItems[$key]['price'],
+                'total' => $invoiceItems[$key]['price'] * $invoiceItems[$key]['quantity'],
             ]);
         });
     }

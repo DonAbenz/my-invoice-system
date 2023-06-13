@@ -2,16 +2,14 @@
 
 namespace App\Http\Livewire\Invoice;
 
-use App\Actions\CreateNewInvoice;
-use App\Actions\UpdateInvoice;
+use App\Jobs\ProcessInvoiceUpdate;
+use App\Jobs\ProcessNewInvoice;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Product;
 use App\Rules\ValidCurrentUserPassword;
 use App\Services\CartService;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class PostModal extends ModalComponent
@@ -116,9 +114,8 @@ class PostModal extends ModalComponent
         $this->total = $this->cartService->total();
     }
 
-    public function store(CreateNewInvoice $createNewInvoice)
+    public function store()
     {
-        DB::beginTransaction();
         try {
 
             if (sizeof($this->content) == 0) {
@@ -132,15 +129,7 @@ class PostModal extends ModalComponent
 
             $this->validate();
 
-            $createNewInvoice->execute(
-                $this->name,
-            );
-
-
-            DB::commit();
-
-            $this->cartService->clear();
-            $this->updateCart();
+            ProcessNewInvoice::dispatch($this->name, $this->content);
 
             $this->dispatchBrowserEvent('swal', [
                 'icon' => 'success',
@@ -152,14 +141,12 @@ class PostModal extends ModalComponent
                 Index::class => 'pageRender',
             ]);
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }
 
-    public function update(UpdateInvoice $updateInvoice)
+    public function update()
     {
-        DB::beginTransaction();
         try {
 
             if (sizeof($this->content) == 0) {
@@ -168,12 +155,11 @@ class PostModal extends ModalComponent
 
             $this->validate();
 
-            $updateInvoice->execute(
+            ProcessInvoiceUpdate::dispatch(
                 $this->invoice->code,
-                $this->name
+                $this->name,
+                $this->content
             );
-
-            DB::commit();
 
             $this->dispatchBrowserEvent('swal', [
                 'icon' => 'success',
@@ -185,7 +171,6 @@ class PostModal extends ModalComponent
                 Index::class => 'pageRender',
             ]);
         } catch (\Throwable $th) {
-            DB::rollBack();
             throw $th;
         }
     }

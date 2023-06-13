@@ -13,6 +13,7 @@ class CreateNewInvoice
 
     public function execute(
         $name,
+        $invoiceItems,
     ): void {
 
         $createdInvoice = Invoice::create([
@@ -20,15 +21,13 @@ class CreateNewInvoice
             'customer_name' => $name,
         ]);
 
-        $cartService = new CartService();
-
-        $cartService->content()->each(function ($item, $key) use ($createdInvoice, $cartService) {
+        $invoiceItems->each(function ($item, $key) use ($createdInvoice, $invoiceItems) {
             InvoiceItem::create([
                 'invoice_code' => $createdInvoice->code,
-                'product_id' => $cartService->content()[$key]['id'],
-                'quantity' => $cartService->content()[$key]['quantity'],
-                'price' => $cartService->content()[$key]['price'],
-                'total' => $cartService->content()[$key]['price'] * $cartService->content()[$key]['quantity'],
+                'product_id' => $invoiceItems[$key]['id'],
+                'quantity' => $invoiceItems[$key]['quantity'],
+                'price' => $invoiceItems[$key]['price'],
+                'total' => $invoiceItems[$key]['price'] * $invoiceItems[$key]['quantity'],
             ]);
         });
     }
