@@ -21,7 +21,7 @@ class UpdateInvoice
             'customer_name' => $name,
         ]);
 
-        InvoiceItem::where('invoice_code', $invoiceCode)->delete();
+        InvoiceItem::where('invoice_code', $invoiceCode)->forceDelete();
 
         $invoiceItems->each(function ($item) use ($invoiceCode) {
             InvoiceItem::create([
