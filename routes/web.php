@@ -18,18 +18,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/invoices', IndexInvoice::class)->name('invoices');
-    // Route::get('/orders/create-sale', CreateOrder::class)->name('orders.create');
 });
