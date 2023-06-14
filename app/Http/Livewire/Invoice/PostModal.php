@@ -55,7 +55,7 @@ class PostModal extends ModalComponent
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string', 'max:50'],
         ];
     }
 
