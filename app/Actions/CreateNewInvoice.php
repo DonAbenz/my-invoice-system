@@ -21,13 +21,13 @@ class CreateNewInvoice
             'customer_name' => $name,
         ]);
 
-        $invoiceItems->each(function ($item, $key) use ($createdInvoice, $invoiceItems) {
+        $invoiceItems->each(function ($item) use ($createdInvoice) {
             InvoiceItem::create([
                 'invoice_code' => $createdInvoice->code,
-                'product_id' => $invoiceItems[$key]['id'],
-                'quantity' => $invoiceItems[$key]['quantity'],
-                'price' => $invoiceItems[$key]['price'],
-                'total' => $invoiceItems[$key]['price'] * $invoiceItems[$key]['quantity'],
+                'product_id' => $item['id'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+                'total' => $item['price'] * $item['quantity'],
             ]);
         });
     }

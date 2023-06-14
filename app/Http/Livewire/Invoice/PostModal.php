@@ -104,7 +104,7 @@ class PostModal extends ModalComponent
         $this->content = $this->cartService->content();
 
         $this->content->each(function ($item, $key) {
-            $this->cartQtys[$key] = $this->content[$key]['quantity'];
+            $this->cartQtys[$key] = $item['quantity'];
         });
 
         $this->total = $this->cartService->total();
