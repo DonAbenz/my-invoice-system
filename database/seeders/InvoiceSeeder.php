@@ -26,11 +26,12 @@ class InvoiceSeeder extends Seeder
                 'customer_name' => $faker->name()
             ]);
 
-            for ($j = 0; $j < rand(2, 5); $j++) {
+            $limitRandomArrayValues = range(1, rand(2, 5));
+            shuffle($limitRandomArrayValues);
 
-                $product = Product::find(rand(1, 5));
+            foreach ($limitRandomArrayValues as $number) {
+                $product = Product::find($number);
                 $quantity = rand(1, 5);
-
                 InvoiceItem::create([
                     'invoice_code' => $createdInvoice->code,
                     'product_id' => $product->id,
