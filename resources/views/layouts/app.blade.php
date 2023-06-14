@@ -123,6 +123,41 @@
                     timerProgressBar: true,
                 });
             });
+
+
+            window.addEventListener('swal:refresh', function(e) {
+                let timerInterval
+                Swal.fire({
+                    icon: e.detail.icon,
+                    title: e.detail.title,
+                    text: e.detail.text,
+                    html: e.detail.html,
+                    width: e.detail.hasOwnProperty('width') ? e.detail.width : 400,
+                    confirmButtonColor: '#1B3B31',
+                    timer: e.detail.hasOwnProperty('timer') ? e.detail.width : 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        // Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        Livewire.emit('pageRender');
+                    } else if (result.isConfirmed) {
+                        setTimeout(function() {
+                                Livewire.emit('pageRender');
+                            },
+                            3000);
+                    }
+                });
+            })
+
             window.addEventListener('swal:confirm', function(e) {
                 Swal.fire({
                     icon: e.detail.icon,

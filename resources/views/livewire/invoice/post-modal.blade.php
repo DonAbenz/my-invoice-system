@@ -22,7 +22,7 @@
 
                 <div class="col-span-full">
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">
-                        Name <span class="text-rose-500">*</span>
+                        Customer Name <span class="text-rose-500">*</span>
                     </label>
                     {{-- <sub>Provide user code if you want send code to your memebers</sub> --}}
                     <div class="relative mt-2 rounded-md shadow-sm">
@@ -44,7 +44,7 @@
                         <label id="listbox-label"
                             class="flex items-end justify-between text-sm font-medium leading-6 text-gray-900">
                             <div>
-                                Product Items <span class="text-rose-500">*</span>
+                                Line Items <span class="text-rose-500">*</span>
                             </div>
 
                             <div class="flex items-end">
@@ -69,7 +69,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
                                     </svg>
 
-                                    <span class="ml-3 block truncate text-gray-500">Please add product to list</span>
+                                    <span class="ml-3 block truncate text-gray-500">Please add item to list</span>
                                 </span>
                                 <span
                                     class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -194,19 +194,15 @@
                             @endforeach
                         </ul>
                     @else
-                        <div class="flex flex-col items-center">
-                            {{-- <lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_e3pteeho.json"
-                                background="transparent" speed="1" style="width: 200px; height: 200px;" loop
-                                autoplay>
-                            </lottie-player> --}}
-                            Empty Cart!
+                        <div class="flex flex-col items-center py-10">
+                            Empty!
                             <span class="text-xl font-semibold"></span>
                         </div>
                     @endif
                 </div>
 
                 {{-- password --}}
-                <div class="col-span-full">
+                {{-- <div class="col-span-full">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
                         Password <span class="text-rose-500">*</span>
                     </label>
@@ -220,7 +216,7 @@
                     @error('password')
                         <span class="text-sm text-[#C1554D]">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> --}}
             </div>
 
             <div class="mt-8 flex">

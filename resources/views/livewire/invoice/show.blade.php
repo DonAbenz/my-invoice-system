@@ -4,14 +4,14 @@
             <div class="sm:flex-auto">
                 <h1 class="text-2xl font-semibold leading-6 text-gray-900">Invoice</h1>
             </div>
-            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            {{-- <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <button type="button"
                     class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Print</button>
-            </div>
+            </div> --}}
         </div>
         <div class="mt-8 sm:flex items-start justify-between">
             <div class="sm:flex-auto">
-                <h1 class="text-lg font-semibold leading-6 text-gray-900">{{ $invoice->code }}</h1>
+                <h1 class="text-lg font-semibold leading-6 text-gray-900"># {{ $invoice->code }}</h1>
             </div>
             <div class="flex flex-col mt-4 sm:ml-16 sm:mt-0 text-right">
                 <span>{{ \Carbon\Carbon::parse($invoice->created_at)->toFormattedDateString() }}</span>

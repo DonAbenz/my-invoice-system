@@ -56,10 +56,6 @@ class PostModal extends ModalComponent
     {
         return [
             'name' => ['required'],
-            'password' => [
-                'required',
-                new ValidCurrentUserPassword()
-            ],
         ];
     }
 
@@ -122,7 +118,7 @@ class PostModal extends ModalComponent
                 $this->dispatchBrowserEvent('swal', [
                     'icon' => 'error',
                     'title' => 'Opps!',
-                    'text' => 'Cart is currently empty. Please select atleast one product.',
+                    'text' => 'Line item is currently empty.',
                 ]);
                 return 0;
             }
@@ -131,7 +127,7 @@ class PostModal extends ModalComponent
 
             ProcessNewInvoice::dispatch($this->name, $this->content);
 
-            $this->dispatchBrowserEvent('swal', [
+            $this->dispatchBrowserEvent('swal:refresh', [
                 'icon' => 'success',
                 'title' => 'Success!',
                 'text' => 'Invoice was created successfully',
@@ -153,7 +149,7 @@ class PostModal extends ModalComponent
                 $this->dispatchBrowserEvent('swal', [
                     'icon' => 'error',
                     'title' => 'Opps!',
-                    'text' => 'Cart is currently empty. Please select atleast one product.',
+                    'text' => 'Line item is currently empty.',
                 ]);
                 return 0;
             }
@@ -166,7 +162,7 @@ class PostModal extends ModalComponent
                 $this->content
             );
 
-            $this->dispatchBrowserEvent('swal', [
+            $this->dispatchBrowserEvent('swal:refresh', [
                 'icon' => 'success',
                 'title' => 'Success!',
                 'text' => 'Invoice was updated successfully',
