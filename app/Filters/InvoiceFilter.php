@@ -11,8 +11,14 @@ class InvoiceFilter extends QueryFilters
         $query = $this->builder;
 
         $query->when($data, function ($query, $search) {
-            $query->selectRaw('*, match(code, customer_name) against(? in boolean mode) as score', [$search])
-                ->whereRaw('match(code, customer_name) against(? in boolean mode)', [$search]);
+
+            if (strlen($search) > 3) {
+                $query->selectRaw('*, match(code, customer_name) against(? in boolean mode) as score', [$search])
+                    ->whereRaw('match(code, customer_name) against(? in boolean mode)', [$search]);
+            } else {
+                $query->where('code', 'LIKE', "%{$search}%")
+                    ->orWhere('customer_name', 'LIKE', "%{$search}%");
+            }
         }, function ($query) {
             $query->latest();
         });
